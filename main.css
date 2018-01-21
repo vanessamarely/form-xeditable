@@ -1,0 +1,30 @@
+body {
+  padding-top: 50px;
+}
+.main-content {
+  padding: 40px 15px;
+}
+
+span.text-value {
+	width: 200px;
+    list-style-type: none;
+    padding: 6px 10px;
+}
+
+span.text-value:hover {
+    background: #EEE;
+}
+
+.animate-show {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    opacity: 1;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    display: inline-block !important;
+}
+.animate-show.ng-hide {
+    opacity: 0;
+}

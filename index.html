@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+<html lang="en"
+      ng-app="mixmax" >
+<head >
+	<title >Form</title >
+	<link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
+	<link href="main.css" rel="stylesheet" >
+	<link href="libs/xeditable/xeditable.css" rel="stylesheet">
+	
+</head >
+
+<body >
+
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container" >
+		<div class="navbar-header" >
+			<a class="navbar-brand"
+			   href="/" >Controllers
+			</a >
+		</div >
+		,
+	</div >
+</nav >
+
+<div class="container main-content" ng-controller="SaveCtrl">
+
+	<div>Email: <a href="#" editable-email="user.email">{{ user.email || 'empty' }}</a></div>
+	
+	<form editable-form name="editableForm" onaftersave="saveUser()">
+		<div class="form-group">
+			<span class="title">Name: </span>
+			<span class="text-value" ng-click="editableForm.$show()" editable-text="user.name" e-name="name" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span>
+			 <button type="button" ng-click="editableForm.$show()" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-show="hoverEdit" class="animate-show">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </button>
+		</div>
+
+		<div class="form-group">
+			<!-- editable email -->
+			<span class="title">Email: </span>
+			<span class="text-value" ng-click="editableForm.$show()" editable-text="user.email" e-name="email" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" onbeforesave="checkName($data)" e-required>{{ user.email || 'empty' }}</span>
+			 <button type="button" ng-click="editableForm.$show()" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-show="hoverEdit" class="animate-show">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </button>
+    	</div> 
+
+		<div class="form-group">
+			<!-- editable status (select-local) -->
+			<span class="title">Status: </span>
+			<span class="text-value" ng-click="editableForm.$show()" editable-select="user.status" e-name="status" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" e-ng-options="s.value as s.text for s in statuses">
+			{{ (statuses | filter:{value: user.status})[0].text || 'Not set' }}
+			</span>
+			 <button type="button" ng-click="editableForm.$show()" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-show="hoverEdit" class="animate-show">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </button>
+    	</div>
+
+    	<div class="form-group">
+			<!-- editable Address -->
+			<span class="title">Address: </span>
+			<span class="text-value" ng-click="editableForm.$show()" editable-text="user.address" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" e-name="address" onbeforesave="checkName($data)" e-required>{{ user.address || 'empty' }}</span>
+			 <button type="button" ng-click="editableForm.$show()" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-show="hoverEdit" class="animate-show">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </button>
+    	</div>  
+
+    	<div class="form-group">
+			<!-- editable Address -->
+			<span class="title">Phone: </span>
+			<span class="text-value" ng-click="editableForm.$show()" editable-text="user.phone" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" e-name="phone" onbeforesave="checkName($data)" e-required>{{ user.phone || 'empty' }}</span>
+			<button type="button" ng-click="editableForm.$show()" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-show="hoverEdit" class="animate-show">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </button>
+    	</div>   
+
+   
+
+	    <div class="form-group">
+	      <!-- button to show form -->
+	      <!-- buttons to submit / cancel form -->
+	      <span ng-show="editableForm.$visible">
+	        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+	          Save
+	        </button>
+	        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+	          Cancel
+	        </button>
+	      </span>
+	    </div>
+
+	</form>  
+
+
+</div >
+
+<script src="libs/angular/angular.min.js"></script>
+<script src="main.js"></script>
+<script src="libs/xeditable/xeditable.js"></script>
+<script data-require="angular-animate@1.4.0-rc.1" data-semver="1.4.0-rc.1" src="https://code.angularjs.org/1.4.0-rc.1/angular-animate.js"></script>    
+
+</body >
+</html >
